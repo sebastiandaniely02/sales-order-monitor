@@ -1,0 +1,38 @@
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.muted {
+  color: #6a7482;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e2e6ec;
+  border-left: 4px solid #1d5fa8;
+  border-radius: 8px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.card.tone-open { border-left-color: #b45309; }
+.card.tone-done { border-left-color: #15803d; }
+.card.tone-cancelled { border-left-color: #b91c1c; }
+
+.card-label {
+  font-size: 0.85rem;
+  color: #6a7482;
+}
+.card-value {
+  font-size: 1.5rem;
+}

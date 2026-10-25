@@ -1,3 +1,5 @@
+import { formatCurrency, formatDate } from '../utils/format';
+
 export default function OrderTable({ orders }) {
   return (
     <table>
@@ -17,9 +19,9 @@ export default function OrderTable({ orders }) {
             <td>{order.SalesId}</td>
             <td>{order.SalesName}</td>
             <td>{order.InventSiteId}</td>
-            <td>{order.CreatedDateTime1}</td>
+            <td>{formatDate(order.CreatedDateTime1)}</td>
             <td>{order.SalesStatus}</td>
-            <td>{order.HAR_TotalSOAmount}</td>
+            <td>{formatCurrency(order.HAR_TotalSOAmount)}</td>
           </tr>
         ))}
       </tbody>
