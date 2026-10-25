@@ -115,6 +115,8 @@ src/
 
 Manual testing using equivalence partitioning (EP) and boundary value analysis (BVA).
 
+All tests were run locally and again on the deployed site (Chrome desktop, DevTools device mode, and a real phone).
+
 | # | Test | Technique | Expected result | Result |
 |---|---|---|---|---|
 | 1 | Call `/meta` and the list endpoint with curl | Integration | 200 OK, `facets`, `summary`, `data` returned | Pass |
