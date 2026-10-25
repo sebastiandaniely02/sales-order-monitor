@@ -36,3 +36,58 @@
 .card-value {
   font-size: 1.5rem;
 }
+
+.panel {
+  background: #ffffff;
+  border: 1px solid #e2e6ec;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.filters {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.85rem;
+  color: #6a7482;
+  min-width: 160px;
+}
+.field.grow {
+  flex: 1 1 280px;
+}
+.field input,
+.field select {
+  padding: 8px 10px;
+  border: 1px solid #e2e6ec;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #1c2430;
+  font: inherit;
+}
+
+.btn-link {
+  padding: 8px 4px;
+  border: none;
+  background: none;
+  color: #1d5fa8;
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+}
