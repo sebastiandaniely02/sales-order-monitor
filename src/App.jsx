@@ -1,16 +1,20 @@
-import { useEffect } from 'react';
-import { getMeta, getOrders } from './api/salesOrders';
+import { useEffect, useState } from 'react';
+import { getOrders } from './api/salesOrders';
+import OrderTable from './components/OrderTable';
 
 export default function App() {
-  useEffect(() => {
-    getMeta()
-      .then((data) => console.log('META:', data))
-      .catch((err) => console.error('META ERROR:', err.message));
+  const [orders, setOrders] = useState([]);
 
-    getOrders({ page: 1, pageSize: 5 })
-      .then((data) => console.log('ORDERS:', data))
+  useEffect(() => {
+    getOrders({ page: 1, pageSize: 25 })
+      .then((data) => setOrders(data.data))
       .catch((err) => console.error('ORDERS ERROR:', err.message));
   }, []);
 
-  return <h1>Sales Order Monitoring</h1>;
+  return (
+    <div>
+      <h1>Sales Order Monitoring</h1>
+      <OrderTable orders={orders} />
+    </div>
+  );
 }
