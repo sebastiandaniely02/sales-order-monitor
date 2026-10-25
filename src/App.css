@@ -91,3 +91,64 @@
   cursor: pointer;
   font: inherit;
 }
+
+.orders {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+.orders th,
+.orders td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid #e2e6ec;
+}
+.orders th {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #6a7482;
+  background: #f8f9fb;
+  white-space: nowrap;
+}
+
+.sort-btn {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  text-transform: inherit;
+  display: inline-flex;
+  gap: 4px;
+}
+.sort-icon {
+  opacity: 0.6;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  font-size: 0.9rem;
+}
+.pager {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pager button {
+  padding: 6px 12px;
+  border: 1px solid #e2e6ec;
+  border-radius: 6px;
+  background: #ffffff;
+  cursor: pointer;
+  font: inherit;
+}
+.pager button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
