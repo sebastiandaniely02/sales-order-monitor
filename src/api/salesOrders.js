@@ -19,8 +19,7 @@ async function request(path = '', params = {}, signal) {
     });
   } catch (err) {
     if (err.name === 'AbortError') throw err;
-    throw new Error('Network error. Please check your internet connection.');
-  }
+    throw new Error('Network error. Please check your internet connection.', { cause: err });  }
 
   if (!response.ok) {
     throw new Error(`The server returned an error (HTTP ${response.status}).`);
