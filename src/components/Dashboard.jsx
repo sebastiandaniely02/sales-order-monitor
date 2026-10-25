@@ -1,7 +1,15 @@
 import { formatCurrency, formatNumber } from '../utils/format';
 
 export default function Dashboard({ summary }) {
-  if (!summary) return null;
+    if (!summary) {
+    return (
+      <section className="cards" aria-label="Order summary loading">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <div key={i} className="card skeleton" />
+        ))}
+      </section>
+    );
+  }
 
   const completed = summary.invoiced_orders + summary.delivered_orders;
 

@@ -1,49 +1,68 @@
+/* ---------- Layout ---------- */
 .app {
   max-width: 1200px;
   margin: 0 auto;
   padding: 24px 16px 48px;
 }
-
+.app-header {
+  margin-bottom: 20px;
+}
+.app-header h1 {
+  font-size: 1.6rem;
+}
 .muted {
-  color: #6a7482;
+  color: var(--muted);
+}
+.mono {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.9em;
 }
 
+/* ---------- Dashboard cards ---------- */
 .cards {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 12px;
   margin-bottom: 20px;
 }
-
 .card {
-  background: #ffffff;
-  border: 1px solid #e2e6ec;
-  border-left: 4px solid #1d5fa8;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
   border-radius: 8px;
   padding: 14px 16px;
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-height: 92px;
 }
-.card.tone-open { border-left-color: #b45309; }
-.card.tone-done { border-left-color: #15803d; }
-.card.tone-cancelled { border-left-color: #b91c1c; }
-
+.card.tone-open { border-left-color: var(--open); }
+.card.tone-done { border-left-color: var(--delivered); }
+.card.tone-cancelled { border-left-color: var(--cancelled); }
 .card-label {
   font-size: 0.85rem;
-  color: #6a7482;
+  color: var(--muted);
 }
 .card-value {
   font-size: 1.5rem;
 }
+.card.skeleton {
+  border-left-color: var(--border);
+  background: linear-gradient(90deg, #eef1f5 25%, #f8f9fb 50%, #eef1f5 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite;
+}
+@keyframes shimmer {
+  to { background-position: -200% 0; }
+}
 
+/* ---------- Panel + filters ---------- */
 .panel {
-  background: #ffffff;
-  border: 1px solid #e2e6ec;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 16px;
 }
-
 .panel-head {
   display: flex;
   justify-content: space-between;
@@ -52,7 +71,9 @@
   flex-wrap: wrap;
   margin-bottom: 12px;
 }
-
+.panel-head h2 {
+  font-size: 1.15rem;
+}
 .filters {
   display: flex;
   gap: 12px;
@@ -60,13 +81,12 @@
   flex-wrap: wrap;
   margin-bottom: 16px;
 }
-
 .field {
   display: flex;
   flex-direction: column;
   gap: 4px;
   font-size: 0.85rem;
-  color: #6a7482;
+  color: var(--muted);
   min-width: 160px;
 }
 .field.grow {
@@ -75,23 +95,48 @@
 .field input,
 .field select {
   padding: 8px 10px;
-  border: 1px solid #e2e6ec;
+  border: 1px solid var(--border);
   border-radius: 6px;
-  background: #ffffff;
-  color: #1c2430;
-  font: inherit;
+  background: var(--surface);
+  color: var(--text);
+}
+.field input:focus,
+.field select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
 }
 
+/* ---------- Buttons ---------- */
+.btn,
+.btn-link,
+.pager button {
+  cursor: pointer;
+  border-radius: 6px;
+}
+.btn {
+  margin-top: 8px;
+  padding: 8px 16px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+}
 .btn-link {
   padding: 8px 4px;
   border: none;
   background: none;
-  color: #1d5fa8;
+  color: var(--accent);
   text-decoration: underline;
-  cursor: pointer;
-  font: inherit;
 }
 
+/* ---------- Table ---------- */
+.table-wrap {
+  overflow-x: auto;
+  transition: opacity 0.15s;
+}
+.table-wrap.is-loading {
+  opacity: 0.5;
+  pointer-events: none;
+}
 .orders {
   width: 100%;
   border-collapse: collapse;
@@ -101,24 +146,36 @@
 .orders td {
   text-align: left;
   padding: 10px 12px;
-  border-bottom: 1px solid #e2e6ec;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
 }
 .orders th {
   font-size: 0.8rem;
   text-transform: uppercase;
-  color: #6a7482;
+  letter-spacing: 0.03em;
+  color: var(--muted);
   background: #f8f9fb;
   white-space: nowrap;
 }
-
+.orders .num {
+  text-align: right;
+  white-space: nowrap;
+}
+.orders tbody tr:hover {
+  background: #f8fafc;
+}
+.cell-stack {
+  display: flex;
+  flex-direction: column;
+}
 .sort-btn {
   border: none;
   background: none;
   padding: 0;
   cursor: pointer;
   color: inherit;
-  font: inherit;
   text-transform: inherit;
+  letter-spacing: inherit;
   display: inline-flex;
   gap: 4px;
 }
@@ -126,6 +183,22 @@
   opacity: 0.6;
 }
 
+/* ---------- Status badges ---------- */
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.badge-open { color: var(--open); background: var(--open-bg); }
+.badge-invoiced { color: var(--invoiced); background: var(--invoiced-bg); }
+.badge-delivered { color: var(--delivered); background: var(--delivered-bg); }
+.badge-cancelled { color: var(--cancelled); background: var(--cancelled-bg); }
+.badge-other { color: var(--muted); background: var(--border); }
+
+/* ---------- Pagination ---------- */
 .pagination {
   display: flex;
   justify-content: space-between;
@@ -142,13 +215,90 @@
 }
 .pager button {
   padding: 6px 12px;
-  border: 1px solid #e2e6ec;
-  border-radius: 6px;
-  background: #ffffff;
-  cursor: pointer;
-  font: inherit;
+  border: 1px solid var(--border);
+  background: var(--surface);
 }
 .pager button:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+}
+
+/* ---------- Loading / empty / error ---------- */
+.state {
+  text-align: center;
+  padding: 40px 16px;
+}
+.state-title {
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+.state-error .state-title {
+  color: var(--cancelled);
+}
+.spinner {
+  width: 32px;
+  height: 32px;
+  margin: 0 auto 12px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1000px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .card:last-child {
+    grid-column: 1 / -1;
+  }
+  .field {
+    min-width: 0;
+    flex: 1 1 100%;
+  }
+
+  /* Table becomes stacked cards on phones */
+  .orders thead {
+    display: none;
+  }
+  .orders,
+  .orders tbody,
+  .orders tr,
+  .orders td {
+    display: block;
+    width: 100%;
+  }
+  .orders tr {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 6px 0;
+  }
+  .orders td {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    border-bottom: none;
+    padding: 6px 12px;
+    text-align: right;
+  }
+  .orders td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--muted);
+    text-align: left;
+  }
+  .pagination {
+    justify-content: center;
+  }
 }
